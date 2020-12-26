@@ -50,5 +50,5 @@ export async function handleBatchReport(req, res) {
         msg.push(generateMessage('❌', '服务障碍', '已正常运行', offlineChanges));
     }
 
-    console.info(msg.join('\n\n'));
+    req.appRoot.bot.postUpdate(msg.join('\n\n'));
 }

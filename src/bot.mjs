@@ -25,7 +25,7 @@ export async function startBot(app) {
         postUpdate(msg) {
             bot.telegram.sendMessage(app.config.channel, msg, {
                 disable_web_page_preview: true,
-                parse_mode: 'MarkdownV2'
+                parse_mode: 'HTML'
             })
         }
     };
