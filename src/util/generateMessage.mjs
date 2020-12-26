@@ -26,7 +26,7 @@ export function generateDetails(deltaDesc, item, items) {
 export function generateMessage(emoji, description, deltaDesc, items) {
     let msg = [];
     msg.push(emoji);
-    msg.push(' - ');
+    msg.push(' ');
     msg.push(description);
 
     for(const item of items) {
