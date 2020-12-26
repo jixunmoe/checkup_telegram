@@ -32,7 +32,7 @@ export async function handleBatchReport(req, res) {
             });
         }
     }
-    // await req.appRoot.saveCache(history);
+    await req.appRoot.saveCache(history);
     res.json({ success: true });
 
     if (changed.length === 0) {
