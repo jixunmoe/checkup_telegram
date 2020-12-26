@@ -8,6 +8,7 @@ export default {
     },
     external: [
         'fs',
+        'path',
         'telegraf/context.js',
         ...Object.keys(require('./package.json').dependencies)
     ],
