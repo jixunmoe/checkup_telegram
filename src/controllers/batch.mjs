@@ -49,11 +49,11 @@ export async function handleBatchReport(req, res) {
     const offlineChanges = changed.filter(x => !x.healthy);
 
     const msg = [];
-    if (healthyChanges.length > 0) {
-        msg.push(generateMessage('✅', '服务恢复', '累计下线', healthyChanges));
-    }
     if (offlineChanges.length > 0) {
         msg.push(generateMessage('❌', '服务障碍', '已正常运行', offlineChanges));
+    }
+    if (healthyChanges.length > 0) {
+        msg.push(generateMessage('✅', '服务恢复', '累计下线', healthyChanges));
     }
 
     req.appRoot.bot.postUpdate(msg.join('\n\n'));
