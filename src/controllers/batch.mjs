@@ -32,12 +32,12 @@ export async function handleBatchReport(req, res) {
             });
         }
     }
-    await req.appRoot.saveCache(history);
     res.json({ success: true });
 
     if (changed.length === 0) {
         return;
     }
+    await req.appRoot.saveCache(history);
 
     const healthyChanges = changed.filter(x => x.healthy);
     const offlineChanges = changed.filter(x => !x.healthy);
