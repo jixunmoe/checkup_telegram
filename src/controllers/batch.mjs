@@ -13,10 +13,14 @@ export async function handleBatchReport(req, res) {
     const history = await req.appRoot.readCache();
     const changed = [];
     for (const item of req.body) {
-        const prevIdx = history.findIndex(prop('title', item.title));
+        let { title, timestamp, healthy } = item;
+
+        const prevIdx = history.findIndex(prop('title', title));
         if (prevIdx < 0) {
             changed.push({
-                ...item,
+                title,
+                timestamp,
+                healthy,
                 delta: 0,
             });
             history.push(item);
@@ -27,7 +31,9 @@ export async function handleBatchReport(req, res) {
         if (item.healthy !== prevItem.healthy) {
             history[prevIdx] = item;
             changed.push({
-                ...item,
+                title,
+                timestamp,
+                healthy,
                 delta: Date.now() - (prevItem.timestamp / 1e6)|0,
             });
         }
