@@ -28,10 +28,10 @@ export function handleSlackRoute(req, res) {
     }
 
     const colour = attachment.color;
-    let msg = `${emojis.get(colour)} 服务 ${body.text} 于 \`${new Date().toISOString()}\` ${statusMap.get(colour)}。`;
+    let msg = `${emojis.get(colour)} <i>${body.text}</i> 于 <code>${new Date().toISOString()}</code> ${statusMap.get(colour)}。`;
     if (isGood) {
         const downTime = readableTime(fields.get('Downtime')-0);
-        msg += `\n累计下线时长 \`${downTime}\`。`;
+        msg += `\n累计下线时长 <code>${downTime}</code>。`;
     }
 
     req.appRoot.bot.postUpdate(msg);
